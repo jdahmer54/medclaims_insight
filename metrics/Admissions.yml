@@ -1,0 +1,9 @@
+unique_name: Admissions
+object_type: metric
+label: Admissions
+description: Paid inpatient admissions (inpatient service categories).
+calculation_method: sum
+dataset: fact_claim_header
+column: admission_count
+format: "#,##0"
+unrelated_dimensions_handling: repeat

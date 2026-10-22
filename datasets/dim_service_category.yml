@@ -1,0 +1,27 @@
+unique_name: dim_service_category
+object_type: dataset
+label: dim_service_category
+description: Medical cost-trend service category with rollup and flags.
+connection_id: Connection - Claims Cost Trend
+table: dim_service_category
+columns:
+- name: service_category_id
+  data_type: long
+- name: service_category
+  data_type: string
+- name: service_category_rollup
+  data_type: string
+- name: care_setting
+  data_type: string
+- name: claim_type
+  data_type: string
+- name: is_behavioral_health
+  data_type: boolean
+- name: is_specialty_drug
+  data_type: boolean
+- name: behavioral_health_flag
+  data_type: string
+  sql: case when is_behavioral_health then 'Behavioral Health' else 'Non-Behavioral Health' end
+- name: specialty_drug_flag
+  data_type: string
+  sql: case when is_specialty_drug then 'Specialty Drug' else 'Non-Specialty Drug' end

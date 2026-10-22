@@ -1,0 +1,6 @@
+unique_name: Paid to Allowed Ratio
+object_type: metric_calc
+label: Paid to Allowed Ratio
+description: Plan paid / allowed.
+expression: Divide([Measures].[Paid Amount], [Measures].[Allowed Amount])
+format: "percent"

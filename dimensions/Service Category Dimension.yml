@@ -1,0 +1,67 @@
+unique_name: Service Category Dimension
+object_type: dimension
+label: Service Category Dimension
+description: Medical cost-trend service category (inpatient, outpatient, professional, post-acute).
+type: standard
+hierarchies:
+- unique_name: Service Category Hierarchy
+  label: Service Category Hierarchy
+  folder: Service
+  description: Service Category Rollup > Service Category.
+  levels:
+  - unique_name: Service Category Rollup
+  - unique_name: Service Category
+    secondary_attributes:
+    - unique_name: Care Setting
+      label: Care Setting
+      description: Care setting.
+      dataset: dim_service_category
+      folder: Service
+      key_columns:
+      - care_setting
+      name_column: care_setting
+      sort_column: care_setting
+    - unique_name: Claim Type
+      label: Claim Type
+      description: Institutional or Professional.
+      dataset: dim_service_category
+      folder: Service
+      key_columns:
+      - claim_type
+      name_column: claim_type
+      sort_column: claim_type
+    - unique_name: Behavioral Health Flag
+      label: Behavioral Health Flag
+      description: Behavioral health (inpatient + outpatient BH) vs. other.
+      dataset: dim_service_category
+      folder: Service
+      key_columns:
+      - behavioral_health_flag
+      name_column: behavioral_health_flag
+      sort_column: behavioral_health_flag
+    - unique_name: Specialty Drug Flag
+      label: Specialty Drug Flag
+      description: Specialty drugs on the medical benefit vs. other.
+      dataset: dim_service_category
+      folder: Service
+      key_columns:
+      - specialty_drug_flag
+      name_column: specialty_drug_flag
+      sort_column: specialty_drug_flag
+level_attributes:
+- unique_name: Service Category Rollup
+  label: Service Category Rollup
+  description: Inpatient / Outpatient / Professional / Post-Acute.
+  dataset: dim_service_category
+  key_columns:
+  - service_category_rollup
+  name_column: service_category_rollup
+- unique_name: Service Category
+  label: Service Category
+  description: Service category.
+  dataset: dim_service_category
+  is_unique_key: true
+  key_columns:
+  - service_category_id
+  name_column: service_category
+  sort_column: service_category

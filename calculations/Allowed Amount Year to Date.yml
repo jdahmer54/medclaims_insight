@@ -1,0 +1,7 @@
+unique_name: Allowed Amount Year to Date
+object_type: metric_calc
+label: Allowed Amount Year to Date
+description: Allowed Amount year to date.
+expression: CASE WHEN ISEMPTY([Measures].[Allowed Amount]) THEN NULL ELSE Aggregate(PeriodsToDate([Date Dimension].[Date Hierarchy].[Year],
+  [Date Dimension].[Date Hierarchy].CurrentMember), [Measures].[Allowed Amount]) END
+format: "$#,##0"

@@ -1,0 +1,78 @@
+unique_name: Member Dimension
+object_type: dimension
+label: Member Dimension
+description: Member (synthetic, no PHI) with demographics, risk tier, employer group and acquisition cohort. Supports high-cost
+  claimant analysis and drill to a member's claims.
+type: standard
+hierarchies:
+- unique_name: Member Hierarchy
+  label: Member Hierarchy
+  folder: Member
+  description: Individual member.
+  levels:
+  - unique_name: Member
+    secondary_attributes:
+    - unique_name: Gender
+      label: Gender
+      description: Member gender.
+      dataset: dim_member
+      folder: Member
+      key_columns:
+      - gender
+      name_column: gender
+      sort_column: gender
+    - unique_name: Age Band
+      label: Age Band
+      description: Age band as of 2025.
+      dataset: dim_member
+      folder: Member
+      key_columns:
+      - age_band
+      name_column: age_band
+      sort_column: age_band
+    - unique_name: Relationship
+      label: Relationship
+      description: Subscriber / Spouse / Dependent.
+      dataset: dim_member
+      folder: Member
+      key_columns:
+      - relationship
+      name_column: relationship
+      sort_column: relationship
+    - unique_name: Risk Tier
+      label: Risk Tier
+      description: Risk tier from the prospective risk score.
+      dataset: dim_member
+      folder: Member
+      key_columns:
+      - risk_tier
+      name_column: risk_tier
+      sort_column: risk_tier
+    - unique_name: Employer Group
+      label: Employer Group
+      description: Employer group (commercial members).
+      dataset: dim_member
+      folder: Member
+      key_columns:
+      - employer_group
+      name_column: employer_group
+      sort_column: employer_group
+    - unique_name: Acquisition Cohort
+      label: Acquisition Cohort
+      description: Legacy book vs. the 2025 Medicare acquisition cohort.
+      dataset: dim_member
+      folder: Member
+      key_columns:
+      - acquisition_cohort
+      name_column: acquisition_cohort
+      sort_column: acquisition_cohort
+level_attributes:
+- unique_name: Member
+  label: Member
+  description: Member number.
+  dataset: dim_member
+  is_unique_key: true
+  key_columns:
+  - member_id
+  name_column: member_number
+  sort_column: member_number

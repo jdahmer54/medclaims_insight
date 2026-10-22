@@ -1,0 +1,319 @@
+unique_name: claims_cost_trend
+object_type: model
+label: Medical Claims Cost Trend
+description: 'Medical cost trend for a multi-state health plan: PMPM, utilization per 1,000, unit cost and MLR by line of
+  business, state, service category, provider, diagnosis, DRG and member, with drill-down to individual claims and claim lines.'
+visible: true
+relationships:
+- unique_name: fact_member_month_Date_Dimension
+  from:
+    dataset: fact_member_month
+    join_columns:
+    - month_key
+  to:
+    dimension: Date Dimension
+    level: Day
+- unique_name: fact_member_month_Geography_Dimension
+  from:
+    dataset: fact_member_month
+    join_columns:
+    - geo_id
+  to:
+    dimension: Geography Dimension
+    level: Market
+- unique_name: fact_member_month_Line_of_Business_Dimension
+  from:
+    dataset: fact_member_month
+    join_columns:
+    - plan_id
+  to:
+    dimension: Line of Business Dimension
+    level: Plan
+- unique_name: fact_member_month_Member_Dimension
+  from:
+    dataset: fact_member_month
+    join_columns:
+    - member_id
+  to:
+    dimension: Member Dimension
+    level: Member
+- unique_name: fact_claim_header_Date_Dimension
+  from:
+    dataset: fact_claim_header
+    join_columns:
+    - service_from_date_key
+  to:
+    dimension: Date Dimension
+    level: Day
+- unique_name: fact_claim_header_Date_Dimension_Adjudicated
+  from:
+    dataset: fact_claim_header
+    join_columns:
+    - adjudicated_date_key
+  to:
+    dimension: Date Dimension
+    level: Day
+  role_play: "Adjudicated {0}"
+- unique_name: fact_claim_header_Geography_Dimension
+  from:
+    dataset: fact_claim_header
+    join_columns:
+    - geo_id
+  to:
+    dimension: Geography Dimension
+    level: Market
+- unique_name: fact_claim_header_Line_of_Business_Dimension
+  from:
+    dataset: fact_claim_header
+    join_columns:
+    - plan_id
+  to:
+    dimension: Line of Business Dimension
+    level: Plan
+- unique_name: fact_claim_header_Member_Dimension
+  from:
+    dataset: fact_claim_header
+    join_columns:
+    - member_id
+  to:
+    dimension: Member Dimension
+    level: Member
+- unique_name: fact_claim_header_Provider_Dimension
+  from:
+    dataset: fact_claim_header
+    join_columns:
+    - billing_provider_id
+  to:
+    dimension: Provider Dimension
+    level: Provider
+- unique_name: fact_claim_header_Service_Category_Dimension
+  from:
+    dataset: fact_claim_header
+    join_columns:
+    - service_category_id
+  to:
+    dimension: Service Category Dimension
+    level: Service Category
+- unique_name: fact_claim_header_Diagnosis_Dimension
+  from:
+    dataset: fact_claim_header
+    join_columns:
+    - primary_diagnosis_id
+  to:
+    dimension: Diagnosis Dimension
+    level: Diagnosis
+- unique_name: fact_claim_header_DRG_Dimension
+  from:
+    dataset: fact_claim_header
+    join_columns:
+    - drg_procedure_id
+  to:
+    dimension: DRG Dimension
+    level: DRG
+- unique_name: fact_claim_header_Claim_Dimension
+  from:
+    dataset: fact_claim_header
+    join_columns:
+    - claim_id
+  to:
+    dimension: Claim Dimension
+    level: Claim
+- unique_name: fact_claim_line_Date_Dimension
+  from:
+    dataset: fact_claim_line
+    join_columns:
+    - service_date_key
+  to:
+    dimension: Date Dimension
+    level: Day
+- unique_name: fact_claim_line_Geography_Dimension
+  from:
+    dataset: fact_claim_line
+    join_columns:
+    - geo_id
+  to:
+    dimension: Geography Dimension
+    level: Market
+- unique_name: fact_claim_line_Line_of_Business_Dimension
+  from:
+    dataset: fact_claim_line
+    join_columns:
+    - plan_id
+  to:
+    dimension: Line of Business Dimension
+    level: Plan
+- unique_name: fact_claim_line_Member_Dimension
+  from:
+    dataset: fact_claim_line
+    join_columns:
+    - member_id
+  to:
+    dimension: Member Dimension
+    level: Member
+- unique_name: fact_claim_line_Provider_Dimension
+  from:
+    dataset: fact_claim_line
+    join_columns:
+    - rendering_provider_id
+  to:
+    dimension: Provider Dimension
+    level: Provider
+- unique_name: fact_claim_line_Service_Category_Dimension
+  from:
+    dataset: fact_claim_line
+    join_columns:
+    - service_category_id
+  to:
+    dimension: Service Category Dimension
+    level: Service Category
+- unique_name: fact_claim_line_Diagnosis_Dimension
+  from:
+    dataset: fact_claim_line
+    join_columns:
+    - diagnosis_id
+  to:
+    dimension: Diagnosis Dimension
+    level: Diagnosis
+- unique_name: fact_claim_line_Procedure_Dimension
+  from:
+    dataset: fact_claim_line
+    join_columns:
+    - procedure_id
+  to:
+    dimension: Procedure Dimension
+    level: Procedure
+- unique_name: fact_claim_line_DRG_Dimension
+  from:
+    dataset: fact_claim_line
+    join_columns:
+    - drg_procedure_id
+  to:
+    dimension: DRG Dimension
+    level: DRG
+- unique_name: fact_claim_line_Claim_Dimension
+  from:
+    dataset: fact_claim_line
+    join_columns:
+    - claim_id
+  to:
+    dimension: Claim Dimension
+    level: Claim
+dimensions:
+- Claim Line Dimension
+metrics:
+- unique_name: Member Months
+  folder: Membership
+- unique_name: Enrolled Members
+  folder: Membership
+- unique_name: Average Risk Score
+  folder: Membership
+- unique_name: Premium
+  folder: Financial
+- unique_name: ASO Admin Fees
+  folder: Financial
+- unique_name: Claim Count
+  folder: Utilization
+- unique_name: Paid Claim Count
+  folder: Utilization
+- unique_name: Denied Claim Count
+  folder: Utilization
+- unique_name: Claimants
+  folder: Utilization
+- unique_name: Admissions
+  folder: Utilization
+- unique_name: ER Visits
+  folder: Utilization
+- unique_name: Inpatient Days
+  folder: Utilization
+- unique_name: Billed Amount
+  folder: Cost
+- unique_name: Allowed Amount
+  folder: Cost
+- unique_name: Paid Amount
+  folder: Cost
+- unique_name: Member Cost Share
+  folder: Cost
+- unique_name: Inpatient Allowed Amount
+  folder: Cost
+- unique_name: Insured Paid Amount
+  folder: Financial
+- unique_name: Average Payment Lag Days
+  folder: Utilization
+- unique_name: Claim Line Count
+  folder: Claim Lines
+- unique_name: Service Units
+  folder: Claim Lines
+- unique_name: Line Billed Amount
+  folder: Claim Lines
+- unique_name: Line Allowed Amount
+  folder: Claim Lines
+- unique_name: Line Paid Amount
+  folder: Claim Lines
+- unique_name: Deductible Amount
+  folder: Claim Lines
+- unique_name: Copay Amount
+  folder: Claim Lines
+- unique_name: Coinsurance Amount
+  folder: Claim Lines
+- unique_name: Allowed PMPM
+  folder: PMPM
+- unique_name: Paid PMPM
+  folder: PMPM
+- unique_name: Premium PMPM
+  folder: PMPM
+- unique_name: Member Cost Share PMPM
+  folder: PMPM
+- unique_name: Medical Loss Ratio
+  folder: Financial
+- unique_name: Admits per 1,000
+  folder: Utilization
+- unique_name: ER Visits per 1,000
+  folder: Utilization
+- unique_name: Paid Claims per 1,000
+  folder: Utilization
+- unique_name: Inpatient Days per 1,000
+  folder: Utilization
+- unique_name: Average Length of Stay
+  folder: Unit Cost
+- unique_name: Allowed per Admission
+  folder: Unit Cost
+- unique_name: Allowed per Claim
+  folder: Unit Cost
+- unique_name: Paid per Claimant
+  folder: Unit Cost
+- unique_name: Denial Rate
+  folder: Utilization
+- unique_name: Member Cost Share Percent
+  folder: Cost
+- unique_name: Paid to Allowed Ratio
+  folder: Cost
+- unique_name: Line Allowed per Unit
+  folder: Claim Lines
+- unique_name: Allowed Amount Prior Year
+  folder: Time Intelligence
+- unique_name: Paid Amount Prior Year
+  folder: Time Intelligence
+- unique_name: Member Months Prior Year
+  folder: Time Intelligence
+- unique_name: Admissions Prior Year
+  folder: Time Intelligence
+- unique_name: Premium Prior Year
+  folder: Time Intelligence
+- unique_name: Insured Paid Amount Prior Year
+  folder: Time Intelligence
+- unique_name: Allowed Amount Year to Date
+  folder: Time Intelligence
+- unique_name: Paid Amount Year to Date
+  folder: Time Intelligence
+- unique_name: Allowed PMPM Prior Year
+  folder: Time Intelligence
+- unique_name: Paid PMPM Prior Year
+  folder: Time Intelligence
+- unique_name: Allowed PMPM YoY Change
+  folder: Time Intelligence
+- unique_name: Paid PMPM YoY Change
+  folder: Time Intelligence
+- unique_name: Admits per 1,000 Prior Year
+  folder: Time Intelligence
+- unique_name: Medical Loss Ratio Prior Year
+  folder: Time Intelligence

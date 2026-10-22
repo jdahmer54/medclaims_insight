@@ -1,0 +1,25 @@
+unique_name: dim_provider
+object_type: dataset
+label: dim_provider
+description: Billing / rendering providers (fictional) with type, specialty, health system, network status.
+connection_id: Connection - Claims Cost Trend
+table: dim_provider
+columns:
+- name: provider_id
+  data_type: long
+- name: provider_npi
+  data_type: string
+- name: provider_name
+  data_type: string
+- name: provider_type
+  data_type: string
+- name: specialty
+  data_type: string
+- name: health_system
+  data_type: string
+- name: geo_id
+  data_type: long
+- name: state_code
+  data_type: string
+- name: network_status
+  data_type: string

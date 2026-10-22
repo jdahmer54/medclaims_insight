@@ -1,0 +1,9 @@
+unique_name: Insured Paid Amount
+object_type: metric
+label: Insured Paid Amount
+description: Paid amount for fully insured lines only (excludes ASO). Numerator of MLR.
+calculation_method: sum
+dataset: fact_claim_header
+column: insured_paid_amount
+format: "$#,##0"
+unrelated_dimensions_handling: repeat

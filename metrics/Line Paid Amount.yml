@@ -1,0 +1,9 @@
+unique_name: Line Paid Amount
+object_type: metric
+label: Line Paid Amount
+description: Plan paid amount on claim lines.
+calculation_method: sum
+dataset: fact_claim_line
+column: paid_amount
+format: "$#,##0.00"
+unrelated_dimensions_handling: repeat

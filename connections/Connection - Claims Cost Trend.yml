@@ -1,0 +1,6 @@
+unique_name: Connection - Claims Cost Trend
+label: Connection - Claims Cost Trend
+object_type: connection
+as_connection: Databricks
+database: main
+schema: hcsc_claims_cost_trend

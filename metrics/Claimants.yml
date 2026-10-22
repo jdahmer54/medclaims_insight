@@ -1,0 +1,9 @@
+unique_name: Claimants
+object_type: metric
+label: Claimants
+description: Distinct members with at least one claim.
+calculation_method: count distinct
+dataset: fact_claim_header
+column: member_id
+format: "#,##0"
+unrelated_dimensions_handling: repeat

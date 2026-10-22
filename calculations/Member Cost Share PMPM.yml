@@ -1,0 +1,6 @@
+unique_name: Member Cost Share PMPM
+object_type: metric_calc
+label: Member Cost Share PMPM
+description: Member cost share per member per month.
+expression: Divide([Measures].[Member Cost Share], [Measures].[Member Months])
+format: "$#,##0.00"

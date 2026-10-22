@@ -1,0 +1,9 @@
+unique_name: Copay Amount
+object_type: metric
+label: Copay Amount
+description: Member copay on claim lines.
+calculation_method: sum
+dataset: fact_claim_line
+column: copay_amount
+format: "$#,##0.00"
+unrelated_dimensions_handling: repeat

@@ -1,0 +1,9 @@
+unique_name: Allowed Amount
+object_type: metric
+label: Allowed Amount
+description: Contracted allowed amount (incurred basis, by service date).
+calculation_method: sum
+dataset: fact_claim_header
+column: allowed_amount
+format: "$#,##0"
+unrelated_dimensions_handling: repeat

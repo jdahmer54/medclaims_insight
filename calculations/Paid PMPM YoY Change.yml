@@ -1,0 +1,6 @@
+unique_name: Paid PMPM YoY Change
+object_type: metric_calc
+label: Paid PMPM YoY Change
+description: Year-over-year % change in paid PMPM.
+expression: Divide([Measures].[Paid PMPM] - [Measures].[Paid PMPM Prior Year], [Measures].[Paid PMPM Prior Year])
+format: "percent"

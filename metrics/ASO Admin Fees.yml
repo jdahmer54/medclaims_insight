@@ -1,0 +1,9 @@
+unique_name: ASO Admin Fees
+object_type: metric
+label: ASO Admin Fees
+description: Administrative fees for self-funded (ASO) members.
+calculation_method: sum
+dataset: fact_member_month
+column: admin_fee_amount
+format: "$#,##0"
+unrelated_dimensions_handling: repeat

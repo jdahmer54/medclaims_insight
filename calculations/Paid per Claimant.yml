@@ -1,0 +1,6 @@
+unique_name: Paid per Claimant
+object_type: metric_calc
+label: Paid per Claimant
+description: Paid amount per distinct claimant.
+expression: Divide([Measures].[Paid Amount], [Measures].[Claimants])
+format: "$#,##0.00"

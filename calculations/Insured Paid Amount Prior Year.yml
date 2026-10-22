@@ -1,0 +1,7 @@
+unique_name: Insured Paid Amount Prior Year
+object_type: metric_calc
+label: Insured Paid Amount Prior Year
+description: Insured Paid Amount for the same period one year earlier.
+expression: CASE WHEN ISEMPTY([Measures].[Insured Paid Amount]) THEN NULL ELSE (ParallelPeriod([Date Dimension].[Date Hierarchy].[Year],
+  1, [Date Dimension].[Date Hierarchy].CurrentMember), [Measures].[Insured Paid Amount]) END
+format: "$#,##0"

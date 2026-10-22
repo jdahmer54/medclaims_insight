@@ -1,0 +1,17 @@
+unique_name: dim_line_of_business
+object_type: dataset
+label: dim_line_of_business
+description: Line of business with funding type and market segment.
+connection_id: Connection - Claims Cost Trend
+table: dim_line_of_business
+columns:
+- name: lob_id
+  data_type: long
+- name: lob_code
+  data_type: string
+- name: lob_name
+  data_type: string
+- name: funding_type
+  data_type: string
+- name: market_segment
+  data_type: string

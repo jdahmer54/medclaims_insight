@@ -1,0 +1,100 @@
+unique_name: Date Dimension
+object_type: dimension
+label: Date Dimension
+description: Calendar date. Conformed across claims (service date) and eligibility (member month); role-played as Adjudicated
+  date on claim headers for payment-lag analysis.
+type: time
+hierarchies:
+- unique_name: Date Hierarchy
+  label: Date Hierarchy
+  description: Year > Quarter > Month > Day.
+  folder: Date Attributes
+  filter_empty: 'yes'
+  levels:
+  - unique_name: Year
+  - unique_name: Quarter
+    parallel_periods: &id001
+    - key_columns:
+      - prior_year
+      level: Year
+    secondary_attributes:
+    - unique_name: Quarter Number
+      label: Quarter Number
+      description: Quarter of year (1-4).
+      dataset: dim_date
+      folder: Date Attributes
+      key_columns:
+      - quarter
+      name_column: quarter
+      sort_column: quarter
+  - unique_name: Month
+    parallel_periods: *id001
+    secondary_attributes:
+    - unique_name: Month of Year
+      label: Month of Year
+      description: Month number (1-12) for seasonality.
+      dataset: dim_date
+      folder: Date Attributes
+      key_columns:
+      - month
+      name_column: month
+      sort_column: month
+    - unique_name: Month Completeness
+      label: Month Completeness
+      description: Whether the calendar month ended on/before the paid-through date (open months are incomplete due to claims
+        lag).
+      dataset: dim_date
+      folder: Date Attributes
+      key_columns:
+      - month_completeness
+      name_column: month_completeness
+      sort_column: month_completeness
+  - unique_name: Day
+    secondary_attributes:
+    - unique_name: Day of Week
+      label: Day of Week
+      description: Day name.
+      dataset: dim_date
+      folder: Date Attributes
+      key_columns:
+      - day_of_week
+      name_column: day_of_week
+      sort_column: day_of_week
+level_attributes:
+- unique_name: Year
+  label: Year
+  description: Calendar year.
+  dataset: dim_date
+  key_columns:
+  - year
+  name_column: year_name
+  sort_column: year
+  time_unit: year
+- unique_name: Quarter
+  label: Quarter
+  description: Calendar quarter (e.g. 2025-Q3).
+  dataset: dim_date
+  key_columns:
+  - quarter_label
+  name_column: quarter_label
+  sort_column: quarter_label
+  time_unit: quarter
+- unique_name: Month
+  label: Month
+  description: Calendar month (e.g. Mar 2025).
+  dataset: dim_date
+  key_columns:
+  - month_start_key
+  name_column: month_label
+  sort_column: month_start_key
+  time_unit: month
+- unique_name: Day
+  label: Day
+  description: Calendar day.
+  dataset: dim_date
+  is_unique_key: true
+  key_columns:
+  - date_key
+  name_column: day_label
+  sort_column: date_key
+  time_unit: day

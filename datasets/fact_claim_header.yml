@@ -1,0 +1,85 @@
+unique_name: fact_claim_header
+object_type: dataset
+label: fact_claim_header
+description: 'Claim header fact: one row per adjudicated claim (paid through the as-of date). Also the source of the Claim
+  dimension.'
+connection_id: Connection - Claims Cost Trend
+table: fact_claim_header
+columns:
+- name: claim_id
+  data_type: long
+- name: claim_number
+  data_type: string
+- name: member_id
+  data_type: long
+- name: billing_provider_id
+  data_type: long
+- name: geo_id
+  data_type: long
+- name: lob_id
+  data_type: long
+- name: plan_id
+  data_type: long
+- name: service_category_id
+  data_type: long
+- name: claim_type
+  data_type: string
+- name: claim_form
+  data_type: string
+- name: place_of_service
+  data_type: string
+- name: service_from_date_key
+  data_type: long
+- name: service_thru_date_key
+  data_type: long
+- name: incurred_month_key
+  data_type: long
+- name: received_date_key
+  data_type: long
+- name: adjudicated_date_key
+  data_type: long
+- name: primary_diagnosis_id
+  data_type: long
+- name: drg_procedure_id
+  data_type: long
+- name: length_of_stay
+  data_type: long
+- name: admission_count
+  data_type: long
+- name: er_visit_count
+  data_type: long
+- name: claim_status
+  data_type: string
+- name: denial_reason
+  data_type: string
+- name: network_status
+  data_type: string
+- name: line_count
+  data_type: long
+- name: billed_amount
+  data_type: decimal(18,2)
+- name: allowed_amount
+  data_type: decimal(18,2)
+- name: paid_amount
+  data_type: decimal(18,2)
+- name: member_cost_share
+  data_type: decimal(18,2)
+- name: is_paid
+  data_type: long
+  sql: case when claim_status = 'Paid' then 1 else 0 end
+- name: is_denied
+  data_type: long
+  sql: case when claim_status = 'Denied' then 1 else 0 end
+- name: inpatient_days
+  data_type: long
+  sql: case when admission_count = 1 then length_of_stay else 0 end
+- name: inpatient_allowed_amount
+  data_type: double
+  sql: case when admission_count = 1 then allowed_amount else 0 end
+- name: insured_paid_amount
+  data_type: double
+  sql: case when lob_id <> 2 then paid_amount else 0 end
+- name: payment_lag_days
+  data_type: long
+  sql: datediff(to_date(cast(adjudicated_date_key as string), 'yyyyMMdd'), to_date(cast(service_thru_date_key as string),
+    'yyyyMMdd'))

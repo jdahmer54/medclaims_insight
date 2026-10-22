@@ -1,0 +1,6 @@
+unique_name: Medical Loss Ratio Prior Year
+object_type: metric_calc
+label: Medical Loss Ratio Prior Year
+description: MLR for the same period one year earlier.
+expression: Divide([Measures].[Insured Paid Amount Prior Year], [Measures].[Premium Prior Year])
+format: "percent"

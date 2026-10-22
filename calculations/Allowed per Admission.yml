@@ -1,0 +1,6 @@
+unique_name: Allowed per Admission
+object_type: metric_calc
+label: Allowed per Admission
+description: Inpatient allowed amount per paid admission (cost per admit).
+expression: Divide([Measures].[Inpatient Allowed Amount], [Measures].[Admissions])
+format: "$#,##0"

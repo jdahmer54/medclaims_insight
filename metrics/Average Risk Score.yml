@@ -1,0 +1,9 @@
+unique_name: Average Risk Score
+object_type: metric
+label: Average Risk Score
+description: Average prospective risk score across member months (1.0 = average).
+calculation_method: average
+dataset: fact_member_month
+column: risk_score
+format: "0.000"
+unrelated_dimensions_handling: repeat

@@ -1,0 +1,6 @@
+unique_name: Average Length of Stay
+object_type: metric_calc
+label: Average Length of Stay
+description: Inpatient days per paid admission.
+expression: Divide([Measures].[Inpatient Days], [Measures].[Admissions])
+format: "#,##0.00"

@@ -1,0 +1,101 @@
+unique_name: Provider Dimension
+object_type: dimension
+label: Provider Dimension
+description: 'Billing (claim header) / rendering (claim line) provider: location, health system, type, specialty and network
+  status. Fictional names.'
+type: standard
+hierarchies:
+- unique_name: Provider Location Hierarchy
+  label: Provider Location Hierarchy
+  folder: Provider
+  description: Provider State > Provider Market > Provider.
+  levels:
+  - unique_name: Provider State
+  - unique_name: Provider Market
+  - unique_name: Provider
+    secondary_attributes:
+    - unique_name: Provider Type
+      label: Provider Type
+      description: Facility / group type.
+      dataset: dim_provider
+      folder: Provider
+      key_columns:
+      - provider_type
+      name_column: provider_type
+      sort_column: provider_type
+    - unique_name: Specialty
+      label: Specialty
+      description: Provider specialty.
+      dataset: dim_provider
+      folder: Provider
+      key_columns:
+      - specialty
+      name_column: specialty
+      sort_column: specialty
+    - unique_name: Network Status
+      label: Network Status
+      description: In- or out-of-network.
+      dataset: dim_provider
+      folder: Provider
+      key_columns:
+      - network_status
+      name_column: network_status
+      sort_column: network_status
+    - unique_name: Provider NPI
+      label: Provider NPI
+      description: Synthetic NPI.
+      dataset: dim_provider
+      folder: Provider
+      key_columns:
+      - provider_npi
+      name_column: provider_npi
+      sort_column: provider_npi
+- unique_name: Health System Hierarchy
+  label: Health System Hierarchy
+  folder: Provider
+  description: Health System > Provider.
+  levels:
+  - unique_name: Health System
+  - unique_name: Provider
+level_attributes:
+- unique_name: Provider State
+  label: Provider State
+  description: State of the provider.
+  dataset: dim_geography
+  key_columns:
+  - state_code
+  name_column: state_name
+  sort_column: state_name
+- unique_name: Provider Market
+  label: Provider Market
+  description: Market of the provider.
+  dataset: dim_geography
+  is_unique_key: true
+  key_columns:
+  - geo_id
+  name_column: market_name
+  sort_column: market_name
+- unique_name: Health System
+  label: Health System
+  description: Owning health system (or Independent).
+  dataset: dim_provider
+  key_columns:
+  - health_system
+  name_column: health_system
+- unique_name: Provider
+  label: Provider
+  description: Provider.
+  dataset: dim_provider
+  is_unique_key: true
+  key_columns:
+  - provider_id
+  name_column: provider_name
+  sort_column: provider_name
+relationships:
+- from:
+    dataset: dim_provider
+    join_columns:
+    - geo_id
+  to:
+    level: Provider Market
+  type: snowflake

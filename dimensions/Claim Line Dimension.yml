@@ -1,0 +1,31 @@
+unique_name: Claim Line Dimension
+object_type: dimension
+label: Claim Line Dimension
+description: Claim line number and line status (degenerate, from the claim line fact). Combine with the Claim and Procedure
+  dimensions to list every line of a claim.
+is_degenerate: true
+hierarchies:
+- unique_name: Claim Line Hierarchy
+  label: Claim Line Hierarchy
+  folder: Claim
+  description: Line number within a claim.
+  levels:
+  - unique_name: Line Number
+    secondary_attributes:
+    - unique_name: Line Status
+      label: Line Status
+      description: Paid or Denied line.
+      dataset: fact_claim_line
+      folder: Claim
+      key_columns:
+      - line_status
+      name_column: line_status
+      sort_column: line_status
+level_attributes:
+- unique_name: Line Number
+  label: Line Number
+  description: Line number within the claim.
+  dataset: fact_claim_line
+  key_columns:
+  - line_number
+  name_column: line_number

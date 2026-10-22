@@ -1,0 +1,7 @@
+unique_name: Allowed Amount Prior Year
+object_type: metric_calc
+label: Allowed Amount Prior Year
+description: Allowed Amount for the same period one year earlier.
+expression: CASE WHEN ISEMPTY([Measures].[Allowed Amount]) THEN NULL ELSE (ParallelPeriod([Date Dimension].[Date Hierarchy].[Year],
+  1, [Date Dimension].[Date Hierarchy].CurrentMember), [Measures].[Allowed Amount]) END
+format: "$#,##0"

@@ -1,0 +1,6 @@
+unique_name: ER Visits per 1,000
+object_type: metric_calc
+label: ER Visits per 1,000
+description: Paid ER visits per 1,000 members per year.
+expression: Divide([Measures].[ER Visits] * 12000, [Measures].[Member Months])
+format: "#,##0.0"

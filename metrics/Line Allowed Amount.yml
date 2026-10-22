@@ -1,0 +1,9 @@
+unique_name: Line Allowed Amount
+object_type: metric
+label: Line Allowed Amount
+description: Allowed amount on claim lines.
+calculation_method: sum
+dataset: fact_claim_line
+column: allowed_amount
+format: "$#,##0.00"
+unrelated_dimensions_handling: repeat

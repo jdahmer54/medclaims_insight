@@ -1,0 +1,6 @@
+unique_name: Medical Loss Ratio
+object_type: metric_calc
+label: Medical Loss Ratio
+description: Insured paid claims / premium (fully insured lines; incurred basis).
+expression: Divide([Measures].[Insured Paid Amount], [Measures].[Premium])
+format: "percent"

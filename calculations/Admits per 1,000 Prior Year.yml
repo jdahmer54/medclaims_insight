@@ -1,0 +1,6 @@
+unique_name: Admits per 1,000 Prior Year
+object_type: metric_calc
+label: Admits per 1,000 Prior Year
+description: Admits per 1,000 for the same period one year earlier.
+expression: Divide([Measures].[Admissions Prior Year] * 12000, [Measures].[Member Months Prior Year])
+format: "#,##0.0"

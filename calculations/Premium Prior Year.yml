@@ -1,0 +1,7 @@
+unique_name: Premium Prior Year
+object_type: metric_calc
+label: Premium Prior Year
+description: Premium for the same period one year earlier.
+expression: CASE WHEN ISEMPTY([Measures].[Premium]) THEN NULL ELSE (ParallelPeriod([Date Dimension].[Date Hierarchy].[Year],
+  1, [Date Dimension].[Date Hierarchy].CurrentMember), [Measures].[Premium]) END
+format: "$#,##0"

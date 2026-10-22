@@ -1,0 +1,40 @@
+unique_name: DRG Dimension
+object_type: dimension
+label: DRG Dimension
+description: MS-DRG of inpatient claims (claim header; claim lines inherit it from their header).
+type: standard
+hierarchies:
+- unique_name: DRG Hierarchy
+  label: DRG Hierarchy
+  folder: Clinical
+  description: DRG Type > DRG.
+  levels:
+  - unique_name: DRG Type
+  - unique_name: DRG
+    secondary_attributes:
+    - unique_name: DRG Code
+      label: DRG Code
+      description: MS-DRG code.
+      dataset: dim_drg
+      folder: Clinical
+      key_columns:
+      - drg_code
+      name_column: drg_code
+      sort_column: drg_code
+level_attributes:
+- unique_name: DRG Type
+  label: DRG Type
+  description: Medical / Surgical / Behavioral / Maternity-Newborn DRG.
+  dataset: dim_drg
+  key_columns:
+  - drg_type
+  name_column: drg_type
+- unique_name: DRG
+  label: DRG
+  description: MS-DRG code and description.
+  dataset: dim_drg
+  is_unique_key: true
+  key_columns:
+  - procedure_id
+  name_column: drg_label
+  sort_column: drg_code

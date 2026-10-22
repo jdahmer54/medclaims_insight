@@ -1,0 +1,95 @@
+unique_name: Line of Business Dimension
+object_type: dimension
+label: Line of Business Dimension
+description: Market segment > line of business > benefit plan.
+type: standard
+hierarchies:
+- unique_name: Line of Business Hierarchy
+  label: Line of Business Hierarchy
+  description: Market Segment > Line of Business > Plan.
+  folder: Line of Business
+  levels:
+  - unique_name: Market Segment
+  - unique_name: Line of Business
+    secondary_attributes:
+    - unique_name: Funding Type
+      label: Funding Type
+      description: Fully Insured or Self-Funded (ASO). MLR applies to fully insured only.
+      dataset: dim_line_of_business
+      folder: Line of Business
+      key_columns:
+      - funding_type
+      name_column: funding_type
+      sort_column: funding_type
+    - unique_name: LOB Code
+      label: LOB Code
+      description: Short line-of-business code.
+      dataset: dim_line_of_business
+      folder: Line of Business
+      key_columns:
+      - lob_code
+      name_column: lob_code
+      sort_column: lob_code
+  - unique_name: Plan
+    secondary_attributes:
+    - unique_name: Product Type
+      label: Product Type
+      description: HMO / PPO / EPO / HDHP.
+      dataset: dim_plan
+      folder: Line of Business
+      key_columns:
+      - product_type
+      name_column: product_type
+      sort_column: product_type
+    - unique_name: Metal Tier
+      label: Metal Tier
+      description: ACA metal tier (Individual only).
+      dataset: dim_plan
+      folder: Line of Business
+      key_columns:
+      - metal_tier
+      name_column: metal_tier
+      sort_column: metal_tier
+    - unique_name: Network Type
+      label: Network Type
+      description: Plan network type.
+      dataset: dim_plan
+      folder: Line of Business
+      key_columns:
+      - network_type
+      name_column: network_type
+      sort_column: network_type
+level_attributes:
+- unique_name: Market Segment
+  label: Market Segment
+  description: Commercial / Individual / Government.
+  dataset: dim_line_of_business
+  key_columns:
+  - market_segment
+  name_column: market_segment
+- unique_name: Line of Business
+  label: Line of Business
+  description: Line of business.
+  dataset: dim_line_of_business
+  is_unique_key: true
+  key_columns:
+  - lob_id
+  name_column: lob_name
+  sort_column: lob_name
+- unique_name: Plan
+  label: Plan
+  description: Benefit plan.
+  dataset: dim_plan
+  is_unique_key: true
+  key_columns:
+  - plan_id
+  name_column: plan_name
+  sort_column: plan_name
+relationships:
+- from:
+    dataset: dim_plan
+    join_columns:
+    - lob_id
+  to:
+    level: Line of Business
+  type: snowflake

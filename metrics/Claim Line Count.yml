@@ -1,0 +1,9 @@
+unique_name: Claim Line Count
+object_type: metric
+label: Claim Line Count
+description: Claim service lines.
+calculation_method: count non-null
+dataset: fact_claim_line
+column: claim_line_id
+format: "#,##0"
+unrelated_dimensions_handling: repeat

@@ -1,0 +1,50 @@
+unique_name: Procedure Dimension
+object_type: dimension
+label: Procedure Dimension
+description: 'Line-level procedure: CPT, HCPCS (including specialty-drug J-codes) and UB-04 revenue codes.'
+type: standard
+hierarchies:
+- unique_name: Procedure Hierarchy
+  label: Procedure Hierarchy
+  folder: Clinical
+  description: Code Type > Procedure Category > Procedure.
+  levels:
+  - unique_name: Code Type
+  - unique_name: Procedure Category
+  - unique_name: Procedure
+    secondary_attributes:
+    - unique_name: Procedure Code
+      label: Procedure Code
+      description: CPT / HCPCS / revenue code.
+      dataset: dim_procedure
+      folder: Clinical
+      key_columns:
+      - procedure_code
+      name_column: procedure_code
+      sort_column: procedure_code
+level_attributes:
+- unique_name: Code Type
+  label: Code Type
+  description: CPT / HCPCS / Revenue Code.
+  dataset: dim_procedure
+  key_columns:
+  - code_type
+  name_column: code_type
+- unique_name: Procedure Category
+  label: Procedure Category
+  description: Procedure category within code type (e.g. Specialty Drug).
+  dataset: dim_procedure
+  key_columns:
+  - code_type
+  - procedure_category
+  name_column: procedure_category
+  sort_column: procedure_category
+- unique_name: Procedure
+  label: Procedure
+  description: Procedure code and description.
+  dataset: dim_procedure
+  is_unique_key: true
+  key_columns:
+  - procedure_id
+  name_column: procedure_label
+  sort_column: procedure_code

@@ -1,0 +1,6 @@
+unique_name: Paid PMPM Prior Year
+object_type: metric_calc
+label: Paid PMPM Prior Year
+description: Paid PMPM for the same period one year earlier.
+expression: Divide([Measures].[Paid Amount Prior Year], [Measures].[Member Months Prior Year])
+format: "$#,##0.00"

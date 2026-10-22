@@ -1,0 +1,9 @@
+unique_name: Member Months
+object_type: metric
+label: Member Months
+description: Enrolled member months (eligibility). Denominator for PMPM and per-1,000 measures.
+calculation_method: sum
+dataset: fact_member_month
+column: member_month_count
+format: "#,##0"
+unrelated_dimensions_handling: repeat

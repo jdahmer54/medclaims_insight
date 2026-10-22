@@ -1,0 +1,9 @@
+unique_name: Denied Claim Count
+object_type: metric
+label: Denied Claim Count
+description: Claims with status Denied.
+calculation_method: sum
+dataset: fact_claim_header
+column: is_denied
+format: "#,##0"
+unrelated_dimensions_handling: repeat

@@ -1,0 +1,69 @@
+unique_name: Claim Dimension
+object_type: dimension
+label: Claim Dimension
+description: Individual claim (from the claim header) for claim-level drill-down, with status, denial reason, network status,
+  place of service and claim form.
+type: standard
+hierarchies:
+- unique_name: Claim Hierarchy
+  label: Claim Hierarchy
+  folder: Claim
+  description: Individual claim number.
+  levels:
+  - unique_name: Claim
+    secondary_attributes:
+    - unique_name: Claim Status
+      label: Claim Status
+      description: Paid or Denied.
+      dataset: fact_claim_header
+      folder: Claim
+      key_columns:
+      - claim_status
+      name_column: claim_status
+      sort_column: claim_status
+    - unique_name: Denial Reason
+      label: Denial Reason
+      description: Reason a claim was denied.
+      dataset: fact_claim_header
+      folder: Claim
+      key_columns:
+      - denial_reason
+      name_column: denial_reason
+      sort_column: denial_reason
+    - unique_name: Claim Network Status
+      label: Claim Network Status
+      description: In- or out-of-network claim.
+      dataset: fact_claim_header
+      folder: Claim
+      key_columns:
+      - network_status
+      name_column: network_status
+      sort_column: network_status
+    - unique_name: Place of Service
+      label: Place of Service
+      description: CMS place of service.
+      dataset: fact_claim_header
+      folder: Claim
+      key_columns:
+      - place_of_service
+      name_column: place_of_service
+      sort_column: place_of_service
+    - unique_name: Claim Form
+      label: Claim Form
+      description: UB-04 (institutional) or CMS-1500 (professional).
+      dataset: fact_claim_header
+      folder: Claim
+      key_columns:
+      - claim_form
+      name_column: claim_form
+      sort_column: claim_form
+level_attributes:
+- unique_name: Claim
+  label: Claim
+  description: Claim number.
+  dataset: fact_claim_header
+  is_unique_key: true
+  key_columns:
+  - claim_id
+  name_column: claim_number
+  sort_column: claim_number

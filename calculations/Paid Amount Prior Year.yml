@@ -1,0 +1,7 @@
+unique_name: Paid Amount Prior Year
+object_type: metric_calc
+label: Paid Amount Prior Year
+description: Paid Amount for the same period one year earlier.
+expression: CASE WHEN ISEMPTY([Measures].[Paid Amount]) THEN NULL ELSE (ParallelPeriod([Date Dimension].[Date Hierarchy].[Year],
+  1, [Date Dimension].[Date Hierarchy].CurrentMember), [Measures].[Paid Amount]) END
+format: "$#,##0"

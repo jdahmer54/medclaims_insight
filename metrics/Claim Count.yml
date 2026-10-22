@@ -1,0 +1,9 @@
+unique_name: Claim Count
+object_type: metric
+label: Claim Count
+description: Adjudicated claims (paid and denied).
+calculation_method: count non-null
+dataset: fact_claim_header
+column: claim_id
+format: "#,##0"
+unrelated_dimensions_handling: repeat

@@ -1,0 +1,9 @@
+unique_name: Enrolled Members
+object_type: metric
+label: Enrolled Members
+description: Distinct members with eligibility in the period.
+calculation_method: count distinct
+dataset: fact_member_month
+column: member_id
+format: "#,##0"
+unrelated_dimensions_handling: repeat

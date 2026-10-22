@@ -1,0 +1,6 @@
+unique_name: Allowed PMPM YoY Change
+object_type: metric_calc
+label: Allowed PMPM YoY Change
+description: Year-over-year % change in allowed PMPM (medical cost trend).
+expression: Divide([Measures].[Allowed PMPM] - [Measures].[Allowed PMPM Prior Year], [Measures].[Allowed PMPM Prior Year])
+format: "percent"

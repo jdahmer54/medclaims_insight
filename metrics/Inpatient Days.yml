@@ -1,0 +1,9 @@
+unique_name: Inpatient Days
+object_type: metric
+label: Inpatient Days
+description: Inpatient days for paid admissions.
+calculation_method: sum
+dataset: fact_claim_header
+column: inpatient_days
+format: "#,##0"
+unrelated_dimensions_handling: repeat

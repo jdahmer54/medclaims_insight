@@ -1,0 +1,6 @@
+unique_name: Allowed per Claim
+object_type: metric_calc
+label: Allowed per Claim
+description: Average allowed amount per claim.
+expression: Divide([Measures].[Allowed Amount], [Measures].[Claim Count])
+format: "$#,##0.00"

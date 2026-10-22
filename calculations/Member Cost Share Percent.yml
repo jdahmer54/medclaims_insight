@@ -1,0 +1,6 @@
+unique_name: Member Cost Share Percent
+object_type: metric_calc
+label: Member Cost Share Percent
+description: Member cost share as a share of allowed.
+expression: Divide([Measures].[Member Cost Share], [Measures].[Allowed Amount])
+format: "percent"

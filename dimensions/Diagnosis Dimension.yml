@@ -1,0 +1,50 @@
+unique_name: Diagnosis Dimension
+object_type: dimension
+label: Diagnosis Dimension
+description: ICD-10-CM diagnosis (primary diagnosis on the claim) with clinical category.
+type: standard
+hierarchies:
+- unique_name: Diagnosis Hierarchy
+  label: Diagnosis Hierarchy
+  folder: Clinical
+  description: Diagnosis Category > Diagnosis.
+  levels:
+  - unique_name: Diagnosis Category
+    secondary_attributes:
+    - unique_name: Chronic Category Flag
+      label: Chronic Category Flag
+      description: Chronic vs. non-chronic category.
+      dataset: dim_diagnosis
+      folder: Clinical
+      key_columns:
+      - chronic_flag
+      name_column: chronic_flag
+      sort_column: chronic_flag
+  - unique_name: Diagnosis
+    secondary_attributes:
+    - unique_name: ICD-10 Code
+      label: ICD-10 Code
+      description: ICD-10-CM code.
+      dataset: dim_diagnosis
+      folder: Clinical
+      key_columns:
+      - icd10_code
+      name_column: icd10_code
+      sort_column: icd10_code
+level_attributes:
+- unique_name: Diagnosis Category
+  label: Diagnosis Category
+  description: Clinical grouping.
+  dataset: dim_diagnosis
+  key_columns:
+  - diagnosis_category
+  name_column: diagnosis_category
+- unique_name: Diagnosis
+  label: Diagnosis
+  description: ICD-10 code and description.
+  dataset: dim_diagnosis
+  is_unique_key: true
+  key_columns:
+  - diagnosis_id
+  name_column: diagnosis_label
+  sort_column: icd10_code

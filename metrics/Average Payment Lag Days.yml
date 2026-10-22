@@ -1,0 +1,9 @@
+unique_name: Average Payment Lag Days
+object_type: metric
+label: Average Payment Lag Days
+description: Average days from service-through date to adjudication.
+calculation_method: average
+dataset: fact_claim_header
+column: payment_lag_days
+format: "#,##0.0"
+unrelated_dimensions_handling: repeat

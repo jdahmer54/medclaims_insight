@@ -1,0 +1,52 @@
+unique_name: Geography Dimension
+object_type: dimension
+label: Geography Dimension
+description: 'Member geography: health plan state and market. Conformed across eligibility, claim headers and claim lines
+  (member market).'
+type: standard
+hierarchies:
+- unique_name: Geography Hierarchy
+  label: Geography Hierarchy
+  description: State > Market.
+  folder: Geography
+  levels:
+  - unique_name: State
+    secondary_attributes:
+    - unique_name: State Plan
+      label: State Plan
+      description: State Blue plan name.
+      dataset: dim_geography
+      folder: Geography
+      key_columns:
+      - state_plan
+      name_column: state_plan
+      sort_column: state_plan
+  - unique_name: Market
+    secondary_attributes:
+    - unique_name: Urbanicity
+      label: Urbanicity
+      description: Urban or rural market.
+      dataset: dim_geography
+      folder: Geography
+      key_columns:
+      - urbanicity
+      name_column: urbanicity
+      sort_column: urbanicity
+level_attributes:
+- unique_name: State
+  label: State
+  description: Health plan state.
+  dataset: dim_geography
+  key_columns:
+  - state_code
+  name_column: state_name
+  sort_column: state_name
+- unique_name: Market
+  label: Market
+  description: Market within the state.
+  dataset: dim_geography
+  is_unique_key: true
+  key_columns:
+  - geo_id
+  name_column: market_name
+  sort_column: market_name

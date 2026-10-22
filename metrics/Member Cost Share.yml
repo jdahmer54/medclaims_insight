@@ -1,0 +1,9 @@
+unique_name: Member Cost Share
+object_type: metric
+label: Member Cost Share
+description: Deductible + copay + coinsurance.
+calculation_method: sum
+dataset: fact_claim_header
+column: member_cost_share
+format: "$#,##0"
+unrelated_dimensions_handling: repeat

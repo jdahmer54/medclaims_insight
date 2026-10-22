@@ -1,0 +1,9 @@
+unique_name: Service Units
+object_type: metric
+label: Service Units
+description: Units billed on claim lines (e.g. days, drug units).
+calculation_method: sum
+dataset: fact_claim_line
+column: units
+format: "#,##0"
+unrelated_dimensions_handling: repeat

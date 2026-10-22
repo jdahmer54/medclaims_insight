@@ -1,0 +1,57 @@
+unique_name: fact_claim_line
+object_type: dataset
+label: fact_claim_line
+description: 'Query dataset: claim lines enriched with the header''s geography, plan and DRG keys so line measures (J-codes,
+  cost share) conform to the Geography, Line of Business and DRG dimensions.'
+connection_id: Connection - Claims Cost Trend
+sql: SELECT l.claim_line_id, l.claim_id, l.line_number, l.member_id, l.rendering_provider_id, l.service_date_key, l.service_category_id,
+  l.diagnosis_id, l.procedure_id, l.units, l.billed_amount, l.allowed_amount, l.deductible_amount, l.copay_amount, l.coinsurance_amount,
+  l.paid_amount, l.line_status, h.geo_id, h.plan_id, h.drg_procedure_id FROM main.hcsc_claims_cost_trend.fact_claim_line l
+  JOIN main.hcsc_claims_cost_trend.fact_claim_header h ON h.claim_id = l.claim_id
+dialects:
+- dialect: DatabricksSQL
+  sql: SELECT l.claim_line_id, l.claim_id, l.line_number, l.member_id, l.rendering_provider_id, l.service_date_key, l.service_category_id,
+    l.diagnosis_id, l.procedure_id, l.units, l.billed_amount, l.allowed_amount, l.deductible_amount, l.copay_amount, l.coinsurance_amount,
+    l.paid_amount, l.line_status, h.geo_id, h.plan_id, h.drg_procedure_id FROM main.hcsc_claims_cost_trend.fact_claim_line
+    l JOIN main.hcsc_claims_cost_trend.fact_claim_header h ON h.claim_id = l.claim_id
+columns:
+- name: claim_line_id
+  data_type: long
+- name: claim_id
+  data_type: long
+- name: line_number
+  data_type: long
+- name: member_id
+  data_type: long
+- name: rendering_provider_id
+  data_type: long
+- name: service_date_key
+  data_type: long
+- name: service_category_id
+  data_type: long
+- name: diagnosis_id
+  data_type: long
+- name: procedure_id
+  data_type: long
+- name: units
+  data_type: long
+- name: billed_amount
+  data_type: decimal(18,2)
+- name: allowed_amount
+  data_type: decimal(18,2)
+- name: deductible_amount
+  data_type: decimal(18,2)
+- name: copay_amount
+  data_type: decimal(18,2)
+- name: coinsurance_amount
+  data_type: decimal(18,2)
+- name: paid_amount
+  data_type: decimal(18,2)
+- name: line_status
+  data_type: string
+- name: geo_id
+  data_type: long
+- name: plan_id
+  data_type: long
+- name: drg_procedure_id
+  data_type: long

@@ -1,0 +1,6 @@
+unique_name: Line Allowed per Unit
+object_type: metric_calc
+label: Line Allowed per Unit
+description: Claim-line allowed amount per service unit.
+expression: Divide([Measures].[Line Allowed Amount], [Measures].[Service Units])
+format: "$#,##0.00"

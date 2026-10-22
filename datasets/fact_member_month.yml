@@ -1,0 +1,28 @@
+unique_name: fact_member_month
+object_type: dataset
+label: fact_member_month
+description: 'Eligibility fact: one row per member per enrolled month. Denominator for PMPM and per-1,000 rates; carries earned
+  premium (fully insured) and ASO admin fees.'
+connection_id: Connection - Claims Cost Trend
+table: fact_member_month
+columns:
+- name: member_month_id
+  data_type: long
+- name: month_key
+  data_type: long
+- name: member_id
+  data_type: long
+- name: geo_id
+  data_type: long
+- name: lob_id
+  data_type: long
+- name: plan_id
+  data_type: long
+- name: member_month_count
+  data_type: long
+- name: risk_score
+  data_type: double
+- name: premium_amount
+  data_type: decimal(18,2)
+- name: admin_fee_amount
+  data_type: decimal(18,2)

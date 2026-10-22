@@ -1,0 +1,6 @@
+unique_name: Denial Rate
+object_type: metric_calc
+label: Denial Rate
+description: Denied claims / all adjudicated claims.
+expression: Divide([Measures].[Denied Claim Count], [Measures].[Claim Count])
+format: "percent"

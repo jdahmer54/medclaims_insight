@@ -1,0 +1,39 @@
+unique_name: dim_member
+object_type: dataset
+label: dim_member
+description: Members (synthetic) with demographics, risk, employer group and acquisition cohort.
+connection_id: Connection - Claims Cost Trend
+table: dim_member
+columns:
+- name: member_id
+  data_type: long
+- name: member_number
+  data_type: string
+- name: gender
+  data_type: string
+- name: birth_year
+  data_type: long
+- name: age_band
+  data_type: string
+- name: relationship
+  data_type: string
+- name: geo_id
+  data_type: long
+- name: lob_id
+  data_type: long
+- name: plan_id
+  data_type: long
+- name: employer_group
+  data_type: string
+- name: effective_date
+  data_type: date
+- name: termination_date
+  data_type: date
+- name: risk_score
+  data_type: double
+- name: risk_tier
+  data_type: string
+- name: pcp_provider_id
+  data_type: long
+- name: acquisition_cohort
+  data_type: string

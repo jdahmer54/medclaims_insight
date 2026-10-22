@@ -1,0 +1,7 @@
+unique_name: Admissions Prior Year
+object_type: metric_calc
+label: Admissions Prior Year
+description: Admissions for the same period one year earlier.
+expression: CASE WHEN ISEMPTY([Measures].[Admissions]) THEN NULL ELSE (ParallelPeriod([Date Dimension].[Date Hierarchy].[Year],
+  1, [Date Dimension].[Date Hierarchy].CurrentMember), [Measures].[Admissions]) END
+format: "#,##0"

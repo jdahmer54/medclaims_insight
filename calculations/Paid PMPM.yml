@@ -1,0 +1,6 @@
+unique_name: Paid PMPM
+object_type: metric_calc
+label: Paid PMPM
+description: Paid amount per member per month.
+expression: Divide([Measures].[Paid Amount], [Measures].[Member Months])
+format: "$#,##0.00"

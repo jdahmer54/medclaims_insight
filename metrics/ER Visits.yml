@@ -1,0 +1,9 @@
+unique_name: ER Visits
+object_type: metric
+label: ER Visits
+description: Paid emergency room visits.
+calculation_method: sum
+dataset: fact_claim_header
+column: er_visit_count
+format: "#,##0"
+unrelated_dimensions_handling: repeat

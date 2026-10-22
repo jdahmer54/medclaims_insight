@@ -1,0 +1,6 @@
+unique_name: Premium PMPM
+object_type: metric_calc
+label: Premium PMPM
+description: Premium per member per month (fully insured; ASO = 0).
+expression: Divide([Measures].[Premium], [Measures].[Member Months])
+format: "$#,##0.00"

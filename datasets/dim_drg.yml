@@ -1,0 +1,25 @@
+unique_name: dim_drg
+object_type: dataset
+label: dim_drg
+description: 'Query dataset: MS-DRG rows of the procedure table, used as the inpatient DRG dimension for claim headers (keeps
+  CPT/HCPCS/revenue codes out of the DRG list).'
+connection_id: Connection - Claims Cost Trend
+sql: SELECT procedure_id, procedure_code AS drg_code, procedure_description AS drg_description, procedure_category AS drg_type,
+  concat('DRG ', procedure_code, ' - ', procedure_description) AS drg_label FROM main.hcsc_claims_cost_trend.dim_procedure
+  WHERE code_type = 'MS-DRG'
+dialects:
+- dialect: DatabricksSQL
+  sql: SELECT procedure_id, procedure_code AS drg_code, procedure_description AS drg_description, procedure_category AS drg_type,
+    concat('DRG ', procedure_code, ' - ', procedure_description) AS drg_label FROM main.hcsc_claims_cost_trend.dim_procedure
+    WHERE code_type = 'MS-DRG'
+columns:
+- name: procedure_id
+  data_type: long
+- name: drg_code
+  data_type: string
+- name: drg_description
+  data_type: string
+- name: drg_type
+  data_type: string
+- name: drg_label
+  data_type: string

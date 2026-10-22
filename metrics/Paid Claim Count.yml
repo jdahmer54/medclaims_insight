@@ -1,0 +1,9 @@
+unique_name: Paid Claim Count
+object_type: metric
+label: Paid Claim Count
+description: Claims with status Paid.
+calculation_method: sum
+dataset: fact_claim_header
+column: is_paid
+format: "#,##0"
+unrelated_dimensions_handling: repeat

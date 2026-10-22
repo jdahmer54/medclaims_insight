@@ -1,0 +1,7 @@
+unique_name: Member Months Prior Year
+object_type: metric_calc
+label: Member Months Prior Year
+description: Member Months for the same period one year earlier.
+expression: CASE WHEN ISEMPTY([Measures].[Member Months]) THEN NULL ELSE (ParallelPeriod([Date Dimension].[Date Hierarchy].[Year],
+  1, [Date Dimension].[Date Hierarchy].CurrentMember), [Measures].[Member Months]) END
+format: "#,##0"

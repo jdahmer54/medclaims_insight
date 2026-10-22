@@ -1,0 +1,6 @@
+unique_name: Allowed PMPM Prior Year
+object_type: metric_calc
+label: Allowed PMPM Prior Year
+description: Allowed PMPM for the same period one year earlier.
+expression: Divide([Measures].[Allowed Amount Prior Year], [Measures].[Member Months Prior Year])
+format: "$#,##0.00"

@@ -1,0 +1,8 @@
+unique_name: claims_cost_trend_catalog
+object_type: catalog
+label: Medical Claims Cost Trend
+description: 'Health plan medical cost trend: PMPM, utilization per 1,000, unit cost and medical loss ratio by line of business,
+  state, service category, provider and member, with drill-down to the individual claim and claim line.'
+version: 1.7
+aggressive_agg_promotion: false
+build_speculative_aggs: false
