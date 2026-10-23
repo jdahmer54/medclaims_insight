@@ -5,12 +5,12 @@ description: 'Query dataset: MS-DRG rows of the procedure table, used as the inp
   CPT/HCPCS/revenue codes out of the DRG list).'
 connection_id: Connection - Claims Cost Trend
 sql: SELECT procedure_id, procedure_code AS drg_code, procedure_description AS drg_description, procedure_category AS drg_type,
-  concat('DRG ', procedure_code, ' - ', procedure_description) AS drg_label FROM main.hcsc_claims_cost_trend.dim_procedure
+  concat('DRG ', procedure_code, ' - ', procedure_description) AS drg_label FROM se_library.medclaims_insight.dim_procedure
   WHERE code_type = 'MS-DRG'
 dialects:
 - dialect: DatabricksSQL
   sql: SELECT procedure_id, procedure_code AS drg_code, procedure_description AS drg_description, procedure_category AS drg_type,
-    concat('DRG ', procedure_code, ' - ', procedure_description) AS drg_label FROM main.hcsc_claims_cost_trend.dim_procedure
+    concat('DRG ', procedure_code, ' - ', procedure_description) AS drg_label FROM se_library.medclaims_insight.dim_procedure
     WHERE code_type = 'MS-DRG'
 columns:
 - name: procedure_id

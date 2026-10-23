@@ -1,14 +1,14 @@
 unique_name: Claim Dimension
 object_type: dimension
 label: Claim Dimension
-description: Individual claim (from the claim header) for claim-level drill-down, with status, denial reason, network status,
-  place of service and claim form.
+description: 'Individual claim and its service lines: drill from the claim number (claim header) to each claim line, with
+  claim status, denial reason, network status, place of service, claim form and line status.'
 type: standard
 hierarchies:
 - unique_name: Claim Hierarchy
   label: Claim Hierarchy
   folder: Claim
-  description: Individual claim number.
+  description: Claim > Claim Line.
   levels:
   - unique_name: Claim
     secondary_attributes:
@@ -57,6 +57,35 @@ hierarchies:
       - claim_form
       name_column: claim_form
       sort_column: claim_form
+  - unique_name: Claim Line
+    secondary_attributes:
+    - unique_name: Line Number
+      label: Line Number
+      description: Line number within the claim.
+      dataset: fact_claim_line
+      folder: Claim
+      key_columns:
+      - line_number
+      name_column: line_number
+      sort_column: line_number
+    - unique_name: Line Status
+      label: Line Status
+      description: Paid or Denied line.
+      dataset: fact_claim_line
+      folder: Claim
+      key_columns:
+      - line_status
+      name_column: line_status
+      sort_column: line_status
+    - unique_name: Line Procedure Code
+      label: Line Procedure Code
+      description: CPT / HCPCS / revenue code billed on the line.
+      dataset: fact_claim_line
+      folder: Claim
+      key_columns:
+      - line_procedure_code
+      name_column: line_procedure_code
+      sort_column: line_procedure_code
 level_attributes:
 - unique_name: Claim
   label: Claim
@@ -67,3 +96,20 @@ level_attributes:
   - claim_id
   name_column: claim_number
   sort_column: claim_number
+- unique_name: Claim Line
+  label: Claim Line
+  description: 'Claim line: line number, procedure code and description.'
+  dataset: fact_claim_line
+  is_unique_key: true
+  key_columns:
+  - claim_line_id
+  name_column: line_label
+  sort_column: claim_line_id
+relationships:
+- from:
+    dataset: fact_claim_line
+    join_columns:
+    - claim_id
+  to:
+    level: Claim
+  type: snowflake

@@ -1,19 +1,23 @@
 unique_name: fact_claim_line
 object_type: dataset
 label: fact_claim_line
-description: 'Query dataset: claim lines enriched with the header''s geography, plan and DRG keys so line measures (J-codes,
-  cost share) conform to the Geography, Line of Business and DRG dimensions.'
+description: 'Query dataset: claim lines enriched with the header''s geography, plan and DRG keys (so line measures conform
+  to Geography, Line of Business and DRG) plus a line display label. Also the source of the Claim Line level.'
 connection_id: Connection - Claims Cost Trend
-sql: SELECT l.claim_line_id, l.claim_id, l.line_number, l.member_id, l.rendering_provider_id, l.service_date_key, l.service_category_id,
+sql: 'SELECT l.claim_line_id, l.claim_id, l.line_number, l.member_id, l.rendering_provider_id, l.service_date_key, l.service_category_id,
   l.diagnosis_id, l.procedure_id, l.units, l.billed_amount, l.allowed_amount, l.deductible_amount, l.copay_amount, l.coinsurance_amount,
-  l.paid_amount, l.line_status, h.geo_id, h.plan_id, h.drg_procedure_id FROM main.hcsc_claims_cost_trend.fact_claim_line l
-  JOIN main.hcsc_claims_cost_trend.fact_claim_header h ON h.claim_id = l.claim_id
+  l.paid_amount, l.line_status, h.geo_id, h.plan_id, h.drg_procedure_id, p.procedure_code AS line_procedure_code, concat(''Line
+  '', cast(l.line_number AS string), '': '', p.procedure_code, '' - '', p.procedure_description) AS line_label FROM se_library.medclaims_insight.fact_claim_line
+  l JOIN se_library.medclaims_insight.fact_claim_header h ON h.claim_id = l.claim_id JOIN se_library.medclaims_insight.dim_procedure
+  p ON p.procedure_id = l.procedure_id'
 dialects:
 - dialect: DatabricksSQL
-  sql: SELECT l.claim_line_id, l.claim_id, l.line_number, l.member_id, l.rendering_provider_id, l.service_date_key, l.service_category_id,
+  sql: 'SELECT l.claim_line_id, l.claim_id, l.line_number, l.member_id, l.rendering_provider_id, l.service_date_key, l.service_category_id,
     l.diagnosis_id, l.procedure_id, l.units, l.billed_amount, l.allowed_amount, l.deductible_amount, l.copay_amount, l.coinsurance_amount,
-    l.paid_amount, l.line_status, h.geo_id, h.plan_id, h.drg_procedure_id FROM main.hcsc_claims_cost_trend.fact_claim_line
-    l JOIN main.hcsc_claims_cost_trend.fact_claim_header h ON h.claim_id = l.claim_id
+    l.paid_amount, l.line_status, h.geo_id, h.plan_id, h.drg_procedure_id, p.procedure_code AS line_procedure_code, concat(''Line
+    '', cast(l.line_number AS string), '': '', p.procedure_code, '' - '', p.procedure_description) AS line_label FROM se_library.medclaims_insight.fact_claim_line
+    l JOIN se_library.medclaims_insight.fact_claim_header h ON h.claim_id = l.claim_id JOIN se_library.medclaims_insight.dim_procedure
+    p ON p.procedure_id = l.procedure_id'
 columns:
 - name: claim_line_id
   data_type: long
@@ -55,3 +59,7 @@ columns:
   data_type: long
 - name: drg_procedure_id
   data_type: long
+- name: line_procedure_code
+  data_type: string
+- name: line_label
+  data_type: string

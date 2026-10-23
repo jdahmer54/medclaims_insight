@@ -194,12 +194,10 @@ relationships:
   from:
     dataset: fact_claim_line
     join_columns:
-    - claim_id
+    - claim_line_id
   to:
     dimension: Claim Dimension
-    level: Claim
-dimensions:
-- Claim Line Dimension
+    level: Claim Line
 metrics:
 - unique_name: Member Months
   folder: Membership
